@@ -10,14 +10,7 @@ class CustomAgent(BaseAgent):
         is_interrupt: bool = False,
         conversation_id: Optional[str] = None,
     ) -> tuple[str, bool]:
-        logger = logging.getLogger(__name__)
-        logger.debug("PRINTING SELF")
-        logger.debug(self)
-        logger.debug("PRINTING SELF.RESPOND_FUNC")
-        logger.debug(self.agent_config.respond_func)
-        logger.debug("PRINTING SELF.RESPOND_FUNC(human_input)")
-        logger.debug(self.agent_config.respond_func(human_input))
-        response = "Hello, world!"
+        response = self.agent_config.respond_func(human_input)
         return response, False
 
     def generate_response(
@@ -26,7 +19,7 @@ class CustomAgent(BaseAgent):
         is_interrupt: bool = False,
         conversation_id: Optional[str] = None,
     ) -> Generator:
-        response = "Hello, world!"
+        response = self.agent_config.respond_func(human_input, conversation_id)
         yield response
 
     def update_last_bot_message_on_cut_off(self, message: str):
