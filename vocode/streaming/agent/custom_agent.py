@@ -1,5 +1,6 @@
 from typing import Generator, Optional
 from vocode.streaming.agent.base_agent import BaseAgent
+import logging
 
 
 class CustomAgent(BaseAgent):
@@ -9,12 +10,13 @@ class CustomAgent(BaseAgent):
         is_interrupt: bool = False,
         conversation_id: Optional[str] = None,
     ) -> tuple[str, bool]:
-        print('PRINTING SELF')
-        print(self)
-        print('PRINTING SELF.RESPOND_FUNC')
-        print(self.agent_config.respond_func)
-        print('PRINTING SELF.RESPOND_FUNC(human_input)')
-        print(self.agent_config.respond_func(human_input))
+        logger = logging.getLogger(__name__)
+        logger.debug("PRINTING SELF")
+        logger.debug(self)
+        logger.debug("PRINTING SELF.RESPOND_FUNC")
+        logger.debug(self.agent_config.respond_func)
+        logger.debug("PRINTING SELF.RESPOND_FUNC(human_input)")
+        logger.debug(self.agent_config.respond_func(human_input))
         response = "Hello, world!"
         return response, False
 
