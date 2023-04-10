@@ -7,6 +7,7 @@ from vocode.streaming.agent.llm_agent import LLMAgent
 from vocode.streaming.agent.restful_user_implemented_agent import (
     RESTfulUserImplementedAgent,
 )
+from vocode.streaming.agent.custom_agent import CustomAgent
 from vocode.streaming.models.agent import AgentConfig, AgentType
 from vocode.streaming.models.synthesizer import SynthesizerConfig, SynthesizerType
 from vocode.streaming.models.transcriber import TranscriberConfig, TranscriberType
@@ -44,6 +45,8 @@ def create_agent(agent_config: AgentConfig) -> BaseAgent:
         )
     elif agent_config.type == AgentType.RESTFUL_USER_IMPLEMENTED:
         return RESTfulUserImplementedAgent(agent_config=agent_config)
+    elif agent_config.type == AgentType.CUSTOM:
+        return CustomAgent(agent_config=agent_config)
     raise Exception("Invalid agent config", agent_config.type)
 
 

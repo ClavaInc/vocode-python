@@ -22,6 +22,7 @@ class AgentType(str, Enum):
     INFORMATION_RETRIEVAL = "agent_information_retrieval"
     RESTFUL_USER_IMPLEMENTED = "agent_restful_user_implemented"
     WEBSOCKET_USER_IMPLEMENTED = "agent_websocket_user_implemented"
+    CUSTOM = "agent_custom"
 
 
 class FillerAudioConfig(BaseModel):
@@ -34,7 +35,8 @@ class FillerAudioConfig(BaseModel):
         if v and values.get("use_phrases"):
             values["use_phrases"] = False
         if not v and not values.get("use_phrases"):
-            raise ValueError("must use either typing noise or phrases for filler audio")
+            raise ValueError(
+                "must use either typing noise or phrases for filler audio")
         return v
 
 
@@ -94,6 +96,10 @@ class InformationRetrievalAgentConfig(
 
 
 class EchoAgentConfig(AgentConfig, type=AgentType.ECHO):
+    pass
+
+
+class CustomAgentConfig(AgentConfig, type=AgentType.CUSTOM):
     pass
 
 
