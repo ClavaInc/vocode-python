@@ -9,6 +9,12 @@ class CustomAgent(BaseAgent):
         is_interrupt: bool = False,
         conversation_id: Optional[str] = None,
     ) -> tuple[str, bool]:
+        print('PRINTING SELF')
+        print(self)
+        print('PRINTING SELF.RESPOND_FUNC')
+        print(self.agent_config.respond_func)
+        print('PRINTING SELF.RESPOND_FUNC(human_input)')
+        print(self.agent_config.respond_func(human_input))
         response = "Hello, world!"
         return response, False
 

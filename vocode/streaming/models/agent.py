@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Optional, Union, Callable
 from enum import Enum
 
 from pydantic import validator
@@ -100,7 +100,7 @@ class EchoAgentConfig(AgentConfig, type=AgentType.ECHO):
 
 
 class CustomAgentConfig(AgentConfig, type=AgentType.CUSTOM):
-    pass
+    respond_func: Callable
 
 
 class RESTfulUserImplementedAgentConfig(
