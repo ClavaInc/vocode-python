@@ -10,7 +10,7 @@ class CustomAgent(BaseAgent):
         is_interrupt: bool = False,
         conversation_id: Optional[str] = None,
     ) -> tuple[str, bool]:
-        response = self.agent_config.respond_func(human_input)
+        response = self.agent_config.respond_func(human_input, conversation_id)
         return response, False
 
     def generate_response(
